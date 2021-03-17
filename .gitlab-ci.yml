@@ -9,7 +9,7 @@ build:
   script:
     - echo Building
   tags:
-    - runner-shell
+    - runner-docker
 
 # QA stage
 checking sonarqube:
