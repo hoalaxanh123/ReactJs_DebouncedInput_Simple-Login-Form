@@ -5,11 +5,11 @@ stages:
   - deploy
 
 build:
-  image:
-    name: sonarsource/sonar-scanner-cli:latest
   stage: build
   script:
     - echo Building
+  tags:
+    - runner-shell
 
 # QA stage
 checking sonarqube:
@@ -28,19 +28,21 @@ checking sonarqube:
       -Dsonar.log.level=INFO
       -Dsonar.verbose=false
       -Dsonar.python.pylint=/usr/bin/pylint -X
+  tags:
+    - runner-docker
 
 
 package:
-  image:
-    name: sonarsource/sonar-scanner-cli:latest
   stage: package
   script:
     - echo package
+  tags:
+    - runner-docker
 
 
 deploy:
-  image:
-    name: sonarsource/sonar-scanner-cli:latest
   stage: deploy
   script:
     - echo deploy
+  tags:
+    - runner-docker
