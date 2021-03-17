@@ -40,9 +40,18 @@ package:
     - runner-docker
 
 
-deploy:
+deploy-test:
   stage: deploy
   script:
     - echo deploy
   tags:
     - runner-docker
+
+deploy-product:
+  stage: deploy
+  script:
+    - echo deploy-product
+  tags:
+    - runner-docker
+  when:
+    - manual
