@@ -19,7 +19,7 @@ checking sonarqube:
   script:
     - export SONAR_SERVER="http://192.168.184.128:9000";
     - export GITLAB_SERVER="192.168.184.128";
-    - export SONAR_TOKEN="bbc405324d527bedc8c4df24e52928dc51dd133f";
+    - export SONAR_TOKEN="90e43d2f56613a8e4f47b514fea000631d6a055d";
     - echo 'test code'
     - sonar-scanner -Dsonar.login=$SONAR_TOKEN 
       -Dsonar.host.url=$SONAR_SERVER
