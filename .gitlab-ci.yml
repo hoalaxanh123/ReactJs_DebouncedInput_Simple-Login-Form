@@ -1,38 +1,46 @@
 stages:
-  - sonar-check
-  - test2
+  - build
+  - test
+  - package
+  - deploy
+
+build:
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+  stage: build
+  script:
+    - echo Building
 
 # QA stage
 checking sonarqube:
   image:
     name: sonarsource/sonar-scanner-cli:latest
-  stage: sonar-check
+  stage: test
   script:
-    - export SONAR_SERVER="http://192.168.109.130:9000";
-    - export GITLAB_SERVER="192.168.109.130";
-    - export SONAR_TOKEN="55d322278d674ed7d9e14aa1f4081d04af2a4698";
+    - export SONAR_SERVER="http://192.168.184.128:9000";
+    - export GITLAB_SERVER="192.168.184.128";
+    - export SONAR_TOKEN="bbc405324d527bedc8c4df24e52928dc51dd133f";
     - echo 'test code'
     - sonar-scanner -Dsonar.login=$SONAR_TOKEN 
       -Dsonar.host.url=$SONAR_SERVER
+      -Dsonar.language=py
       -Dsonar.gitlab.project_id=$GITLAB_SERVER
       -Dsonar.log.level=INFO
       -Dsonar.verbose=false
       -Dsonar.python.pylint=/usr/bin/pylint -X
 
 
-# Preview stage
-checking sonarqube:
+package:
   image:
     name: sonarsource/sonar-scanner-cli:latest
-  stage: test
+  stage: package
   script:
-    - echo hello1
+    - echo package
 
 
-# Preview stage
-checking sonarqube:
+deploy:
   image:
     name: sonarsource/sonar-scanner-cli:latest
-  stage: test2
+  stage: deploy
   script:
-    - echo hello2
+    - echo deploy
