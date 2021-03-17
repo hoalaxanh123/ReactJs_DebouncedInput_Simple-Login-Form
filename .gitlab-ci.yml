@@ -54,4 +54,4 @@ deploy-product:
   tags:
     - runner-docker
   when:
-    - manual
+    manual
