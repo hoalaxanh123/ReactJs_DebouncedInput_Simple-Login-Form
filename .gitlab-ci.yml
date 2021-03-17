@@ -53,5 +53,4 @@ deploy-product:
     - echo deploy-product
   tags:
     - runner-docker
-  when:
-    manual
+  when: manual
