@@ -5,7 +5,7 @@ stages:
   - deploy
 
 build:
-  stage: build
+  stage: test
   script:
     - echo Building
   tags:
